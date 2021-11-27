@@ -1,5 +1,9 @@
 package com.example.chucknorris
 
+import android.annotation.SuppressLint
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -27,6 +31,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.chucknorris.ui.theme.Turquoise
 import com.example.chucknorris.ui.theme.White
@@ -106,19 +111,17 @@ fun JokesScreen(jokesViewModel: JokesViewModel = viewModel()) {
 
 @Composable
 fun WebScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(White)
-            .wrapContentSize(Alignment.Center)
-    ) {
-        Text(
-            text = "Web View",
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            textAlign = TextAlign.Center,
-            fontSize = 25.sp
-        )
+    AndroidView(factory = { WebView(it).apply {
+        webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                return false
+            }
+        }
     }
+    }, update = {
+        it.loadUrl("https://www.icndb.com/api/")
+    })
 }
