@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -95,7 +96,7 @@ fun JokesScreenPort(jokesViewModel: JokesViewModel = viewModel()) {
                 .width(220.dp),
             value = text.value,
             onValueChange = { if (it.text.length <= 2) text.value = it },
-            placeholder = { Text("Count") },
+            placeholder = { Text(stringResource(R.string.placeholder)) },
             colors = TextFieldDefaults.textFieldColors(
                 textColor = Turquoise,
                 backgroundColor = White,
@@ -119,7 +120,7 @@ fun JokesScreenPort(jokesViewModel: JokesViewModel = viewModel()) {
                 .padding(start = 120.dp, bottom = 100.dp, top = 16.dp)
                 .width(150.dp)
                 .height(60.dp)
-        ) { Text(text = "RELOAD") }
+        ) { Text(text = stringResource(R.string.btnText)) }
     }
 }
 
@@ -167,7 +168,7 @@ fun JokesScreenLand(jokesViewModel: JokesViewModel = viewModel()) {
                 .width(100.dp),
             value = text.value,
             onValueChange = { if (it.text.length <= 2) text.value = it },
-            placeholder = { Text("Count") },
+            placeholder = { Text(stringResource(R.string.placeholder)) },
             colors = TextFieldDefaults.textFieldColors(
                 textColor = Turquoise,
                 backgroundColor = White,
@@ -191,7 +192,7 @@ fun JokesScreenLand(jokesViewModel: JokesViewModel = viewModel()) {
                 .padding(start = 10.dp, bottom = 80.dp, top = 16.dp)
                 .width(120.dp)
                 .height(60.dp)
-        ) { Text(text = "RELOAD") }
+        ) { Text(text = stringResource(R.string.btnText)) }
     }
 }
 
